@@ -1,0 +1,77 @@
+[gd_scene load_steps=3 format=3 uid="uid://ul0tf1hkepw6"]
+
+[ext_resource type="LabelSettings" uid="uid://d0bm2ccwelpyo" path="res://menu/menu_text.tres" id="1_1qkbt"]
+[ext_resource type="Script" uid="uid://nhs16fywasjq" path="res://scripts/menu.gd" id="1_34fkm"]
+
+[node name="Control" type="Control" node_paths=PackedStringArray("game_list", "name_input", "popup")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_34fkm")
+game_list = NodePath("SelectGame/ScrollContainer/VBoxContainer")
+name_input = NodePath("AcceptDialog/VBoxContainer/LineEdit")
+popup = NodePath("AcceptDialog")
+
+[node name="SelectGame" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -119.5
+offset_right = 119.5
+offset_bottom = 152.0
+grow_horizontal = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="SelectGame"]
+layout_mode = 2
+text = "Select Game
+"
+label_settings = ExtResource("1_1qkbt")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="SelectGame"]
+custom_minimum_size = Vector2(0, 150)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SelectGame/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="SelectGame"]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="SelectGame"]
+layout_mode = 2
+text = "Make new game"
+label_settings = ExtResource("1_1qkbt")
+horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="SelectGame"]
+layout_mode = 2
+text = "Create new Game
+"
+
+[node name="AcceptDialog" type="AcceptDialog" parent="."]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="AcceptDialog"]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="AcceptDialog/VBoxContainer"]
+layout_mode = 2
+text = "Game name:"
+label_settings = ExtResource("1_1qkbt")
+
+[node name="LineEdit" type="LineEdit" parent="AcceptDialog/VBoxContainer"]
+layout_mode = 2
+
+[connection signal="pressed" from="SelectGame/Button" to="." method="_on_create_game_pressed"]
+[connection signal="confirmed" from="AcceptDialog" to="." method="_on_create_game_popup_confirmed"]

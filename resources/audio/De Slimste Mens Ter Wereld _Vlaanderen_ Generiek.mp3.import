@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://ca7wqufgolrsa"
+path="res://.godot/imported/De Slimste Mens Ter Wereld _Vlaanderen_ Generiek.mp3-7f294944a98c714872fe314635f7c504.mp3str"
+
+[deps]
+
+source_file="res://resources/audio/De Slimste Mens Ter Wereld _Vlaanderen_ Generiek.mp3"
+dest_files=["res://.godot/imported/De Slimste Mens Ter Wereld _Vlaanderen_ Generiek.mp3-7f294944a98c714872fe314635f7c504.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0.0
+bpm=0.0
+beat_count=0
+bar_beats=4

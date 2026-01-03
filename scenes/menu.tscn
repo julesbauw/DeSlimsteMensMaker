@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://bhwl4e7fdrfo3"]
+
+[ext_resource type="AudioStream" uid="uid://bsxt05fdyl2is" path="res://resources/audio/music.mp3" id="1_vjb58"]
+[ext_resource type="Texture2D" uid="uid://cspx7dqqa5mdb" path="res://resources/images/back2.jpeg" id="2_con2f"]
+[ext_resource type="PackedScene" uid="uid://ul0tf1hkepw6" path="res://scenes/menuUI.tscn" id="4_mhnvy"]
+
+[node name="Menu" type="Node2D"]
+
+[node name="AudioListener2D" type="AudioListener2D" parent="."]
+
+[node name="Music" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("1_vjb58")
+autoplay = true
+bus = &"Music"
+
+[node name="Back2" type="Sprite2D" parent="."]
+position = Vector2(-4.999998, 22.000008)
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("2_con2f")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Control" parent="." instance=ExtResource("4_mhnvy")]
+offset_left = 2.0
+offset_top = -240.0
+offset_right = 2.0
+offset_bottom = -240.0
