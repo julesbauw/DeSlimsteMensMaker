@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="RoundDirectory" load_steps=4 format=3 uid="uid://ckhqum70rdcpl"]
+
+[ext_resource type="Script" uid="uid://b6hc077fyr7h1" path="res://scripts/round_directory.gd" id="1_6ejm7"]
+[ext_resource type="Script" uid="uid://0kh8yiti1mm3" path="res://scripts/question_files.gd" id="1_s6vc5"]
+
+[sub_resource type="Resource" id="Resource_ysa4r"]
+script = ExtResource("1_s6vc5")
+name = "vragen.txt"
+questions = "# schrijf de vragen hier onder
+Wie is de presentator van de slimste mens?
+Wie is de slimste mens ter wereld?
+Wie ...?
+"
+metadata/_custom_type_script = "uid://0kh8yiti1mm3"
+
+[resource]
+script = ExtResource("1_6ejm7")
+name = "3-6-9"
+help_text = "maak een lijst van vragen in vragen.txt, elke vraag dat een veelvoud van 3 is zal 10 punten op leveren"
+init_files = Array[ExtResource("1_s6vc5")]([SubResource("Resource_ysa4r")])
+metadata/_custom_type_script = "uid://b6hc077fyr7h1"

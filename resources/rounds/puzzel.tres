@@ -1,0 +1,33 @@
+[gd_resource type="Resource" script_class="RoundDirectory" load_steps=4 format=3 uid="uid://delt41grbabbt"]
+
+[ext_resource type="Script" uid="uid://0kh8yiti1mm3" path="res://scripts/question_files.gd" id="1_endrw"]
+[ext_resource type="Script" uid="uid://b6hc077fyr7h1" path="res://scripts/round_directory.gd" id="2_hbpbw"]
+
+[sub_resource type="Resource" id="Resource_ysa4r"]
+script = ExtResource("1_endrw")
+name = "voorbeeld_puzzel1.txt"
+questions = "# voorbeeld puzzel [category] gevolgd door # 4 woorden
+[Bomen]
+eik
+den
+spar
+berk
+[Voetballers]
+Lukaku
+Ronaldo
+Messi
+Courtois
+[fruit]
+banaan
+peer
+appel
+kiwi"
+metadata/_custom_type_script = "uid://0kh8yiti1mm3"
+
+[resource]
+script = ExtResource("2_hbpbw")
+name = "puzzel"
+help_text = "Plaats per puzzel een textbestand in deze map
+"
+init_files = Array[ExtResource("1_endrw")]([SubResource("Resource_ysa4r")])
+metadata/_custom_type_script = "uid://b6hc077fyr7h1"
