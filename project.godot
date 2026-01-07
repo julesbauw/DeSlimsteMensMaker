@@ -17,4 +17,6 @@ config/icon="uid://bhb3yumh2se8d"
 
 [autoload]
 
-GameManager="*res://scripts/game_manager.gd"
+GameManager="*res://scripts/globals/game_manager.gd"
+GameFileManager="*res://scripts/globals/game_file_manager.gd"
+FileParser="*res://scripts/globals/file_parser.gd"

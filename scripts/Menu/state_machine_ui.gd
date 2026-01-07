@@ -10,17 +10,17 @@ enum state {
 	EDIT_GAME,
 }
 
-var states = {}
+var states:Dictionary = {}
 
 var current_state:StateUI
 
 func _ready() -> void:
 	
 	for child in self.get_children():
-		var child_state = child as StateUI
-		if (!child_state):
+		var child_state := child as StateUI
+		if child_state == null:
 			continue
-		child_state.state_machine = self
+		child_state.set_state_machine(self)
 		states[child_state.state] = child_state
 
 	if initial_state:
@@ -32,7 +32,7 @@ func switch_state(new_state_enum:state):
 
 	var new_state = states.get(new_state_enum)
 
-	if (!new_state):
+	if (new_state == null):
 		return
 	
 	if current_state:
@@ -40,3 +40,5 @@ func switch_state(new_state_enum:state):
 		
 	current_state = new_state
 	new_state.enter_state()
+	for s in states:
+		print(states[s].state_machine)

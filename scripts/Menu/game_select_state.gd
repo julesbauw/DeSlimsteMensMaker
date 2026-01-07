@@ -8,13 +8,11 @@ class_name GameSelectState
 
 const GAMES_DIR := "user://games"
 
-const ROUNDS_DIR := "resources/rounds/"
-
 func enter_state():
 	super.enter_state()
 	# load UI of existing games
 	_load_games()
-	GameManager.reset()
+	GameManager.reset() #RESET GAMEMANAGER
 
 func leave_state():
 	super.leave_state()
@@ -54,8 +52,17 @@ func _add_game(game_name: String):
 	)
 	game_list.add_child(button)
 
+### SET IMPORTANT INFO TO THE GAME MANAGER!!
 func _select_game(game_name: String):
 	GameManager.GAME_NAME = game_name
+	var player_dir_name = GAMES_DIR + "/" + GameManager.GAME_NAME + "/" + "players"
+	
+	if not DirAccess.dir_exists_absolute(player_dir_name):
+		DirAccess.make_dir_absolute(player_dir_name)
+		GameManager.players = []
+	else:
+		GameManager.players = FileParser.parse_players_from_directory(player_dir_name)
+
 	print("Selected game:", GameManager.GAME_NAME)
 	state_machine.switch_state(state_machine.state.START_GAME)
 
@@ -64,80 +71,11 @@ func _on_create_game_pressed():
 	popup.popup_centered()
 	name_input.grab_focus()
 
-
-"""
-In this section we make the file directory, TODO -> to other script
-"""
-
 func _on_create_game_popup_confirmed():
 	var game_name := name_input.text.strip_edges()
 	if game_name.is_empty():
 		return
 
 	var path := GAMES_DIR + "/" + game_name
-	if DirAccess.dir_exists_absolute(path):
-		print("Game already exists")
-		return
-
-	DirAccess.make_dir_absolute(path)
-
-	var dir = DirAccess.open(ROUNDS_DIR)
-
-	if !(dir):
-		return
-	
-	dir.list_dir_begin()
-	var file_name := dir.get_next()
-
-	## rounds
-
-	while file_name != "":
-		if not dir.current_is_dir() and file_name.ends_with(".tres"):
-			print(file_name)
-			var round_path := ROUNDS_DIR + file_name
-			var resource:RoundDirectory = load(round_path) as RoundDirectory
-
-			var round_directory := path + "/" + resource.name
-			
-			DirAccess.make_dir_absolute(round_directory)
-
-			# help text
-
-			var expl_file = FileAccess.open(round_directory + "/help.txt",FileAccess.WRITE)
-			if expl_file == null:
-				push_error("Could not open file: " + round_directory + "/help.txt")
-			expl_file.store_string(resource.help_text)
-			expl_file.close()
-			
-			for question_file in resource.init_files:
-				var file_path = round_directory + "/" + question_file.name
-				var file = FileAccess.open(file_path,FileAccess.WRITE)
-				if file == null:
-					push_error("Could not open file: " + file_path)
-					continue
-				file.store_string(question_file.questions)
-				file.close()
-			
-			for question_dir_name in resource.init_dir:
-				DirAccess.make_dir_absolute(round_directory + "/" + question_dir_name)
-
-		file_name = dir.get_next()
-	
-	## players
-	
-	DirAccess.make_dir_absolute(path + "/players")
-	for i in range(3):
-		var file_path := path + "/players/player_example_" + str(i) + ".txt"
-		var file := FileAccess.open(file_path, FileAccess.WRITE)
-
-		if file == null:
-			push_error("Could not open file: " + file_path)
-			continue
-
-		file.store_string(
-			"name: Player" + str(i) + "\n" +
-			"start_score: 60\n"
-		)
-
-		file.close()
+	GameFileManager.create_game_directory(path)
 	_load_games()

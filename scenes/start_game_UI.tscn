@@ -4,78 +4,90 @@
 [ext_resource type="LabelSettings" uid="uid://d0bm2ccwelpyo" path="res://menu/menu_text.tres" id="2_0oegl"]
 [ext_resource type="PackedScene" uid="uid://b4peqit17xsec" path="res://scenes/player_ui.tscn" id="3_0oegl"]
 
-[node name="StartGameUI" type="Control" node_paths=PackedStringArray("player_list", "game_name")]
+[node name="Start_game" type="Control" node_paths=PackedStringArray("player_list", "game_name")]
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+anchors_preset = 0
+offset_top = 494.0
+offset_right = 524.0
+offset_bottom = 494.0
 script = ExtResource("1_6dibe")
-player_list = NodePath("SelectGame/HBoxContainer")
-game_name = NodePath("SelectGame/Label")
+player_list = NodePath("Start_game/HBoxContainer")
+game_name = NodePath("Start_game/Label")
+state = 1
 
-[node name="SelectGame" type="VBoxContainer" parent="."]
+[node name="Start_game" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -195.5
-offset_top = 32.0
-offset_right = 196.5
-offset_bottom = 428.0
+offset_left = -262.0
+offset_right = 130.0
+offset_bottom = 490.0
 grow_horizontal = 2
 alignment = 1
 
-[node name="Label" type="Label" parent="SelectGame"]
+[node name="Label" type="Label" parent="Start_game"]
 layout_mode = 2
+size_flags_horizontal = 4
 text = "QUIZ"
 label_settings = ExtResource("2_0oegl")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Button" type="Button" parent="SelectGame"]
+[node name="Button" type="Button" parent="Start_game"]
 layout_mode = 2
+size_flags_horizontal = 4
 text = "Start Game"
 
-[node name="Space3" type="Control" parent="SelectGame"]
+[node name="Space3" type="Control" parent="Start_game"]
 custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
 
-[node name="return_button" type="Button" parent="SelectGame"]
+[node name="return_button" type="Button" parent="Start_game"]
 layout_mode = 2
+size_flags_horizontal = 4
 text = "return to menu
 "
 
-[node name="Space" type="Control" parent="SelectGame"]
+[node name="Space" type="Control" parent="Start_game"]
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="SelectGame"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Start_game"]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="Player_UI" parent="Start_game/HBoxContainer" instance=ExtResource("3_0oegl")]
 layout_mode = 2
 
-[node name="Player_UI" parent="SelectGame/HBoxContainer" instance=ExtResource("3_0oegl")]
+[node name="VBoxContainer2" parent="Start_game/HBoxContainer" instance=ExtResource("3_0oegl")]
 layout_mode = 2
 
-[node name="VBoxContainer2" parent="SelectGame/HBoxContainer" instance=ExtResource("3_0oegl")]
+[node name="PlayerUI" parent="Start_game/HBoxContainer" instance=ExtResource("3_0oegl")]
 layout_mode = 2
 
-[node name="Space2" type="Control" parent="SelectGame"]
+[node name="Space2" type="Control" parent="Start_game"]
 custom_minimum_size = Vector2(0, 70)
 layout_mode = 2
 
-[node name="AcceptDialog" type="AcceptDialog" parent="."]
+[node name="StartGameUI" type="Control" parent="Start_game" node_paths=PackedStringArray("player_list", "game_name")]
+layout_mode = 2
+script = ExtResource("1_6dibe")
+player_list = NodePath("../HBoxContainer")
+game_name = NodePath("../Label")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="AcceptDialog"]
+[node name="AcceptDialog" type="AcceptDialog" parent="Start_game/StartGameUI"]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Start_game/StartGameUI/AcceptDialog"]
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="Label" type="Label" parent="AcceptDialog/VBoxContainer"]
+[node name="Label" type="Label" parent="Start_game/StartGameUI/AcceptDialog/VBoxContainer"]
 layout_mode = 2
 text = "Game name:"
 label_settings = ExtResource("2_0oegl")
 
-[node name="LineEdit" type="LineEdit" parent="AcceptDialog/VBoxContainer"]
+[node name="LineEdit" type="LineEdit" parent="Start_game/StartGameUI/AcceptDialog/VBoxContainer"]
 layout_mode = 2
 
-[connection signal="pressed" from="SelectGame/return_button" to="." method="_on_return_button_pressed"]
+[connection signal="pressed" from="Start_game/return_button" to="." method="_on_return_button_pressed"]

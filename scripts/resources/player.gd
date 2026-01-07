@@ -6,4 +6,7 @@ class_name Player
 
 @export var score:int
 
-@export var image:Image
+@export var image_path:String
+
+@export var image:Texture2D
+
