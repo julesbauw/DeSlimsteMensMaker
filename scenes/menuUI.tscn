@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://ul0tf1hkepw6"]
 
 [ext_resource type="LabelSettings" uid="uid://d0bm2ccwelpyo" path="res://menu/menu_text.tres" id="1_1qkbt"]
-[ext_resource type="Script" uid="uid://nhs16fywasjq" path="res://scripts/game_select.gd" id="1_34fkm"]
+[ext_resource type="Script" uid="uid://nhs16fywasjq" path="res://scripts/Menu/game_select_state.gd" id="1_34fkm"]
 
 [node name="Control" type="Control" node_paths=PackedStringArray("game_list", "name_input", "popup")]
 layout_mode = 3

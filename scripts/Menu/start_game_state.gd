@@ -1,21 +1,16 @@
-extends Control
-
-class_name StartGameUI
+extends StateUI
+class_name StartGameState
 
 
 @export var player_list: HBoxContainer
 @export var game_name: Label
 
-var menu:Menu
-
-
-
-func init_game():
+func enter_state():
+	super.enter_state()
 	game_name.text = GameManager.GAME_NAME
 
 func _on_return_button_pressed():
-	menu._to_game_select_menu()
-
+	state_machine.switch_state(state_machine.state.SELECT_GAME)
 
 func _on_start_game_pressed():
 	pass

@@ -1,15 +1,12 @@
 [gd_scene load_steps=6 format=3 uid="uid://bhwl4e7fdrfo3"]
 
-[ext_resource type="Script" uid="uid://bw837kucbrn8k" path="res://scripts/menu.gd" id="1_4ytvr"]
+[ext_resource type="Script" uid="uid://bw837kucbrn8k" path="res://scripts/Menu/state_machine_ui.gd" id="1_4ytvr"]
 [ext_resource type="AudioStream" uid="uid://bsxt05fdyl2is" path="res://resources/audio/music.mp3" id="1_vjb58"]
 [ext_resource type="Texture2D" uid="uid://cspx7dqqa5mdb" path="res://resources/images/back2.jpeg" id="2_con2f"]
 [ext_resource type="PackedScene" uid="uid://qbaveq8wf24l" path="res://scenes/start_game_UI.tscn" id="4_4ytvr"]
 [ext_resource type="PackedScene" uid="uid://ul0tf1hkepw6" path="res://scenes/menuUI.tscn" id="4_mhnvy"]
 
-[node name="Menu" type="Node2D" node_paths=PackedStringArray("start_game_ui", "game_select_ui")]
-script = ExtResource("1_4ytvr")
-start_game_ui = NodePath("StartGameUI")
-game_select_ui = NodePath("game_select")
+[node name="Menu" type="Node2D"]
 
 [node name="AudioListener2D" type="AudioListener2D" parent="."]
 
@@ -25,15 +22,29 @@ texture = ExtResource("2_con2f")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
-[node name="game_select" parent="." instance=ExtResource("4_mhnvy")]
+[node name="StateMachineUI" type="Control" parent="." node_paths=PackedStringArray("initial_state")]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -21.0
+offset_top = 19.0
+offset_right = 19.0
+offset_bottom = 59.0
+script = ExtResource("1_4ytvr")
+initial_state = NodePath("game_select")
+metadata/_custom_type_script = "uid://bw837kucbrn8k"
+
+[node name="game_select" parent="StateMachineUI" instance=ExtResource("4_mhnvy")]
+layout_mode = 1
 offset_left = 6.0
 offset_top = -295.0
 offset_right = 6.0
 offset_bottom = -295.0
 
-[node name="StartGameUI" parent="." instance=ExtResource("4_4ytvr")]
+[node name="StartGameUI" parent="StateMachineUI" instance=ExtResource("4_4ytvr")]
 visible = false
+layout_mode = 1
 offset_left = -4.0
 offset_top = -173.0
 offset_right = -4.0
 offset_bottom = -173.0
+state = 1
