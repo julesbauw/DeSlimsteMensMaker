@@ -64,6 +64,7 @@ func _select_game(game_name: String):
 		GameManager.players = FileParser.parse_players_from_directory(player_dir_name)
 
 	print("Selected game:", GameManager.GAME_NAME)
+	print("Player  amount: ", len(GameManager.players))
 	state_machine.switch_state(state_machine.state.START_GAME)
 
 func _on_create_game_pressed():

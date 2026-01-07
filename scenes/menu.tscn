@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://bhwl4e7fdrfo3"]
 
-[ext_resource type="Script" uid="uid://bw837kucbrn8k" path="res://scripts/Menu/state_machine_ui.gd" id="1_4ytvr"]
+[ext_resource type="Script" uid="uid://bw837kucbrn8k" path="res://scripts/UI/state_machine_ui.gd" id="1_4ytvr"]
 [ext_resource type="AudioStream" uid="uid://bsxt05fdyl2is" path="res://resources/audio/music.mp3" id="1_vjb58"]
 [ext_resource type="Texture2D" uid="uid://cspx7dqqa5mdb" path="res://resources/images/back2.jpeg" id="2_con2f"]
 [ext_resource type="PackedScene" uid="uid://qbaveq8wf24l" path="res://scenes/start_game_UI.tscn" id="4_4ytvr"]
@@ -45,6 +45,6 @@ offset_bottom = -295.0
 visible = false
 layout_mode = 1
 offset_left = 88.0
-offset_top = -145.0
+offset_top = -140.0
 offset_right = 88.0
-offset_bottom = -145.0
+offset_bottom = -140.0

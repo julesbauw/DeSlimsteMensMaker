@@ -20,16 +20,18 @@ func parse_players_from_directory(player_dir_name) -> Array[Player]:
 		if not player_dir.current_is_dir() and player_file_name.ends_with(".txt"):
 			var player_file_path = player_dir_name + "/" + player_file_name
 			var player = FileParser.parse_player_file(player_file_path)
-			if (player != null):
+			if player != null:
 				players.append(player)
 		player_file_name = player_dir.get_next()
 	
 	for player in players:
 		var full_image_path = player_dir_name + "/" + player.image_path
 		if player.image_path != "" and FileAccess.file_exists(full_image_path):
-			print("image_found")
-			player.image = load(full_image_path)
-		
+			print("image_found: ",full_image_path)
+			var img = Image.new()
+			if img.load(full_image_path) == OK:
+				player.image = ImageTexture.create_from_image(img)
+			print(player.image)
 	return players
 
 func parse_player_file(file_path:String) -> Player:

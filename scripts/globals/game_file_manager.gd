@@ -75,8 +75,8 @@ func create_game_directory(path:String):
 			continue
 
 		file.store_string(
-			"name: Player" + str(i) + "\n" +
-			"start_score: 60\n"
+			"player_name: Player" + str(i) + "\n" +
+			"score: 60\n"
 		)
 
 		file.close()
