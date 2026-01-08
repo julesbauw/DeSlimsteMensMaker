@@ -6,7 +6,8 @@ class_name GameSelectState
 @export var name_input: LineEdit
 @export var popup: AcceptDialog
 
-const GAMES_DIR := "user://games"
+@onready var button_scene:PackedScene = load("res://scenes/select_game_button.tscn")
+
 
 func enter_state():
 	super.enter_state()
@@ -20,19 +21,18 @@ func leave_state():
 
 func _ready():
 	# check whether game directory exists, if not
-	self.state = state_machine.state.SELECT_GAME
 	_make_game_directory()
 
 func _make_game_directory():
-	if not DirAccess.dir_exists_absolute(GAMES_DIR):
-		DirAccess.make_dir_absolute(GAMES_DIR)
+	if not DirAccess.dir_exists_absolute(GameManager.GAMES_DIR):
+		DirAccess.make_dir_absolute(GameManager.GAMES_DIR)
 
 func _load_games():
 	# Oude knoppen verwijderen
 	for child in game_list.get_children():
 		child.queue_free()
 
-	var dir := DirAccess.open(GAMES_DIR)
+	var dir := DirAccess.open(GameManager.GAMES_DIR)
 	if dir == null:
 		return
 
@@ -45,7 +45,7 @@ func _load_games():
 	dir.list_dir_end()
 
 func _add_game(game_name: String):
-	var button := Button.new()
+	var button := button_scene.instantiate() as Button
 	button.text = game_name
 	button.pressed.connect(func():
 		_select_game(game_name)
@@ -55,7 +55,7 @@ func _add_game(game_name: String):
 ### SET IMPORTANT INFO TO THE GAME MANAGER!!
 func _select_game(game_name: String):
 	GameManager.GAME_NAME = game_name
-	var player_dir_name = GAMES_DIR + "/" + GameManager.GAME_NAME + "/" + "players"
+	var player_dir_name = GameManager.GAMES_DIR + "/" + GameManager.GAME_NAME + "/" + "players"
 	
 	if not DirAccess.dir_exists_absolute(player_dir_name):
 		DirAccess.make_dir_absolute(player_dir_name)
@@ -65,7 +65,7 @@ func _select_game(game_name: String):
 
 	print("Selected game:", GameManager.GAME_NAME)
 	print("Player  amount: ", len(GameManager.players))
-	state_machine.switch_state(state_machine.state.START_GAME)
+	state_machine.switch_state("game_start")
 
 func _on_create_game_pressed():
 	name_input.text = ""
@@ -77,6 +77,6 @@ func _on_create_game_popup_confirmed():
 	if game_name.is_empty():
 		return
 
-	var path := GAMES_DIR + "/" + game_name
+	var path := GameManager.GAMES_DIR + "/" + game_name
 	GameFileManager.create_game_directory(path)
 	_load_games()

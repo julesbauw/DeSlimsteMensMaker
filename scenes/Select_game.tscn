@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://ul0tf1hkepw6"]
+[gd_scene load_steps=4 format=3 uid="uid://ul0tf1hkepw6"]
 
 [ext_resource type="LabelSettings" uid="uid://d0bm2ccwelpyo" path="res://menu/menu_text.tres" id="1_1qkbt"]
 [ext_resource type="Script" uid="uid://nhs16fywasjq" path="res://scripts/UI/game_select_state.gd" id="1_34fkm"]
+[ext_resource type="Theme" uid="uid://eide34iowbue" path="res://menu/button.tres" id="3_d3o47"]
 
 [node name="Select_Game" type="Control" node_paths=PackedStringArray("game_list", "name_input", "popup")]
 layout_mode = 3
@@ -46,16 +47,12 @@ size_flags_vertical = 3
 alignment = 1
 
 [node name="HSeparator" type="HSeparator" parent="SelectGame"]
+custom_minimum_size = Vector2(0, 26.625)
 layout_mode = 2
-
-[node name="Label2" type="Label" parent="SelectGame"]
-layout_mode = 2
-text = "Make new game"
-label_settings = ExtResource("1_1qkbt")
-horizontal_alignment = 1
 
 [node name="Button" type="Button" parent="SelectGame"]
 layout_mode = 2
+theme = ExtResource("3_d3o47")
 text = "Create new Game
 "
 

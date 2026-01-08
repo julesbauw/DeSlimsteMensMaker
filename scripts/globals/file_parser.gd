@@ -27,11 +27,9 @@ func parse_players_from_directory(player_dir_name) -> Array[Player]:
 	for player in players:
 		var full_image_path = player_dir_name + "/" + player.image_path
 		if player.image_path != "" and FileAccess.file_exists(full_image_path):
-			print("image_found: ",full_image_path)
 			var img = Image.new()
 			if img.load(full_image_path) == OK:
 				player.image = ImageTexture.create_from_image(img)
-			print(player.image)
 	return players
 
 func parse_player_file(file_path:String) -> Player:
@@ -97,3 +95,30 @@ func resource_fill_fields(res: Resource, data: Dictionary):
 				
 
 	
+
+"""
+3-6-9
+"""
+
+func parse_question_file(file_name:String) -> Array[String]:
+
+	var file = FileAccess.open(file_name,FileAccess.READ)
+
+	print(file_name)
+	if file == null:
+		return []
+
+	
+	var questions:Array[String] = []
+
+	var line  = file.get_line()
+
+	while not file.eof_reached():
+		var stripped_line = line.strip_edges()
+
+		if not stripped_line.begins_with("#"):
+			questions.append(stripped_line)
+
+		line = file.get_line()
+	
+	return questions

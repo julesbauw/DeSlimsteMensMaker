@@ -1,4 +1,7 @@
-[gd_resource type="LabelSettings" format=3 uid="uid://d0bm2ccwelpyo"]
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://d0bm2ccwelpyo"]
+
+[ext_resource type="FontFile" uid="uid://dmj6pqohsc1ho" path="res://resources/fonts/dsmtw.ttf" id="1_kwr55"]
 
 [resource]
-font_size = 20
+font = ExtResource("1_kwr55")
+font_size = 40

@@ -10,6 +10,8 @@ class_name StartGameState
 const GAMES_DIR := "user://games"
 
 @onready var player_ui_scene:PackedScene = load("res://scenes/player_ui.tscn")
+@onready var next_scene:PackedScene = load("res://scenes/intro.tscn")
+
 
 func enter_state():
 	super.enter_state()
@@ -22,9 +24,12 @@ func enter_state():
 		push_error("Could not load player UI")
 		return
 	
-	for player in GameManager.players:
+	for i in range(len(GameManager.players)):
+
 		var player_ui = player_ui_scene.instantiate() as PlayerUI
-		player_ui.set_player(player)
+		
+		player_ui.set_player(i)
+		
 		player_list.add_child(player_ui)
 		
 
@@ -32,11 +37,12 @@ func enter_state():
 
 func _on_return_button_pressed():
 	if (state_machine != null):
-		state_machine.switch_state(state_machine.state.SELECT_GAME)
+		state_machine.switch_state("game_select")
 	else:
-		push_error("No state_machine found for state: " + str(state))
+		push_error("No state_machine found")
 
 
 
 func _on_start_game_pressed():
-	pass
+	leave_state()
+	get_tree().change_scene_to_packed(next_scene)

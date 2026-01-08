@@ -4,11 +4,6 @@ class_name StateMachineUI
 
 @export var initial_state:StateUI
 
-enum state {
-	SELECT_GAME,
-	START_GAME,
-	EDIT_GAME,
-}
 
 var states:Dictionary = {}
 
@@ -21,16 +16,16 @@ func _ready() -> void:
 		if child_state == null:
 			continue
 		child_state.set_state_machine(self)
-		states[child_state.state] = child_state
+		states[child_state.name.to_lower()] = child_state
 
 	if initial_state:
 		initial_state.enter_state()
 		current_state = initial_state
 
 
-func switch_state(new_state_enum:state):
+func switch_state(new_state_name:String):
 
-	var new_state = states.get(new_state_enum)
+	var new_state = states.get(new_state_name)
 
 	if (new_state == null):
 		return

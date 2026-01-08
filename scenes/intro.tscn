@@ -1,0 +1,41 @@
+[gd_scene load_steps=4 format=3 uid="uid://c4um0eqys11ed"]
+
+[ext_resource type="Script" uid="uid://c62t183wnk70v" path="res://scripts/intro.gd" id="1_4bx60"]
+[ext_resource type="Texture2D" uid="uid://bhb3yumh2se8d" path="res://resources/images/de-slimste-mens-2018.jpg" id="1_yjqpq"]
+[ext_resource type="AudioStream" uid="uid://ca7wqufgolrsa" path="res://resources/audio/De Slimste Mens Ter Wereld _Vlaanderen_ Generiek.mp3" id="2_yjqpq"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_4bx60")
+
+[node name="DeSlimsteMens2018" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(498, 224)
+texture = ExtResource("1_yjqpq")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(496.00003, 227)
+scale = Vector2(0.27999997, 0.36)
+zoom = Vector2(1.5, 1.5)
+
+[node name="Music" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_yjqpq")
+volume_db = 24.0
+autoplay = true
+bus = &"Music"
+
+[node name="AudioListener2D" type="AudioListener2D" parent="."]
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TextureRect" type="TextureRect" parent="Control"]
+layout_mode = 0
+offset_left = -333.0
+offset_top = -134.0
+offset_right = 667.0
+offset_bottom = 314.0
+scale = Vector2(1.6, 1.6)
+texture = ExtResource("1_yjqpq")

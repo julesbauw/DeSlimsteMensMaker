@@ -15,15 +15,23 @@ stream = ExtResource("1_vjb58")
 autoplay = true
 bus = &"Music"
 
-[node name="Back2" type="Sprite2D" parent="."]
-position = Vector2(-4.999998, 22.000008)
-scale = Vector2(0.7, 0.7)
-texture = ExtResource("2_con2f")
-
 [node name="Camera2D" type="Camera2D" parent="."]
 
-[node name="StateMachineUI" type="Control" parent="." node_paths=PackedStringArray("initial_state")]
+[node name="Control" type="Control" parent="."]
 layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TextureRect" type="TextureRect" parent="Control"]
+layout_mode = 0
+offset_left = -1233.0
+offset_top = -780.0
+offset_right = 1247.0
+offset_bottom = 875.0
+texture = ExtResource("2_con2f")
+
+[node name="StateMachineUI" type="Control" parent="Control" node_paths=PackedStringArray("initial_state")]
 anchors_preset = 0
 offset_left = -21.0
 offset_top = 19.0
@@ -33,7 +41,7 @@ script = ExtResource("1_4ytvr")
 initial_state = NodePath("game_select")
 metadata/_custom_type_script = "uid://bw837kucbrn8k"
 
-[node name="game_select" parent="StateMachineUI" instance=ExtResource("4_mhnvy")]
+[node name="game_select" parent="Control/StateMachineUI" instance=ExtResource("4_mhnvy")]
 visible = false
 layout_mode = 1
 offset_left = 6.0
@@ -41,10 +49,10 @@ offset_top = -295.0
 offset_right = 6.0
 offset_bottom = -295.0
 
-[node name="StartGameUI" parent="StateMachineUI" instance=ExtResource("4_4ytvr")]
+[node name="game_start" parent="Control/StateMachineUI" instance=ExtResource("4_4ytvr")]
 visible = false
 layout_mode = 1
-offset_left = 88.0
-offset_top = -140.0
-offset_right = 88.0
-offset_bottom = -140.0
+offset_left = 95.0
+offset_top = -154.0
+offset_right = 95.0
+offset_bottom = -154.0

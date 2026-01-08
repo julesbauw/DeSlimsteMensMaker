@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://1wepolytywvc"]
+
+[ext_resource type="Theme" uid="uid://eide34iowbue" path="res://menu/button.tres" id="1_ds03e"]
+
+[node name="select_game_button" type="Button"]
+offset_right = 8.0
+offset_bottom = 8.0
+theme = ExtResource("1_ds03e")

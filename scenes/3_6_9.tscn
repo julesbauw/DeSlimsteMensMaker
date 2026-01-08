@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=3 uid="uid://d0jlxoogl1pcg"]
+
+[ext_resource type="Script" uid="uid://dg4s2ti3r43fo" path="res://round_3-6-9_state.gd" id="1_iqr82"]
+[ext_resource type="FontFile" uid="uid://dmj6pqohsc1ho" path="res://resources/fonts/dsmtw.ttf" id="2_oglfs"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_5d2km"]
+font = ExtResource("2_oglfs")
+font_size = 100
+
+[node name="3-6-9" type="Control" node_paths=PackedStringArray("question_list", "question_label")]
+layout_mode = 3
+anchors_preset = 0
+size_flags_horizontal = 3
+script = ExtResource("1_iqr82")
+question_list = NodePath("HBoxContainer")
+question_label = NodePath("Label")
+round_name = "3-6-9"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 150.0
+theme_override_constants/separation = 30
+
+[node name="Label" type="Label" parent="."]
+custom_minimum_size = Vector2(1920, 0)
+layout_mode = 0
+offset_left = 8.0
+offset_top = 456.0
+offset_right = 1234.0
+offset_bottom = 661.0
+text = "Wie is de Slimste mens ter wereld?
+"
+label_settings = SubResource("LabelSettings_5d2km")
+horizontal_alignment = 1
