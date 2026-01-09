@@ -2,11 +2,8 @@
 
 [ext_resource type="Script" uid="uid://d0ww0m8yyd6n6" path="res://round_number.gd" id="1_5y4wi"]
 [ext_resource type="Texture2D" uid="uid://dehxnhq67mg4a" path="res://resources/images/dsm_circle_l_uni_spin.png" id="2_v6p32"]
-[ext_resource type="FontFile" uid="uid://dmj6pqohsc1ho" path="res://resources/fonts/dsmtw.ttf" id="3_j2cux"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_nc6l4"]
-font = ExtResource("3_j2cux")
-font_size = 75
+[ext_resource type="LabelSettings" uid="uid://b32dm72rc51au" path="res://menu/roundNumberOn.tres" id="3_5y4wi"]
+[ext_resource type="LabelSettings" uid="uid://dmmaxoy3kvryk" path="res://menu/roundNumberOff.tres" id="3_v6p32"]
 
 [node name="RoundNumber" type="Control" node_paths=PackedStringArray("number_label")]
 custom_minimum_size = Vector2(100, 110)
@@ -24,6 +21,8 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_5y4wi")
 number_label = NodePath("TextureRect/Label")
+label_settings_on = ExtResource("3_5y4wi")
+label_settings_off = ExtResource("3_v6p32")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 0
@@ -38,6 +37,6 @@ offset_top = 18.0
 offset_right = 101.0
 offset_bottom = 94.0
 text = "1"
-label_settings = SubResource("LabelSettings_nc6l4")
+label_settings = ExtResource("3_v6p32")
 horizontal_alignment = 1
 vertical_alignment = 1

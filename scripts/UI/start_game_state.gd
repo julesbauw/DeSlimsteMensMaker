@@ -31,7 +31,6 @@ func enter_state():
 		player_ui.set_player(i)
 		
 		player_list.add_child(player_ui)
-		
 
 	
 

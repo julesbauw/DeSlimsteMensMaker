@@ -1,5 +1,6 @@
 extends StateMachineUI
 
+class_name RoundStateMachine
 
 @export var correct_audio:AudioStreamPlayer2D
 @export var wrong_audio:AudioStreamPlayer2D
@@ -7,18 +8,32 @@ extends StateMachineUI
 
 @export var clock_audio:AudioStreamPlayer2D
 
-@export var player_list:HBoxContainer
+@export var player_Container:HBoxContainer
+
+var player_list:Array[PlayerUI]
 
 
 @onready var player_ui_scene:PackedScene = load("res://scenes/player_ui.tscn")
 
+func _input(event: InputEvent) -> void:
+
+	current_state.handle_input(event)
 
 func _ready() -> void:
-	super._ready()
+	player_list = []
+
 	for i in range(len(GameManager.players)):
 		var player_ui = player_ui_scene.instantiate() as PlayerUI
+		if player_ui == null:
+			print("failed to load playerUI")
+			return
 		player_ui.set_player(i)
-		player_list.add_child(player_ui)
+		player_Container.add_child(player_ui)
+		player_list.append(player_ui)
+
+
+	super._ready()
+
 
 func _on_skip_round():
 	if current_state == null || not (current_state is RoundStateUI):

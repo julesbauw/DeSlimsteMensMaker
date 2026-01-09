@@ -17,5 +17,13 @@ func leave_state():
 	self.visible = false
 
 
-func set_state_machine(state_m:StateMachineUI):
+func set_state_machine(state_m):
 	state_machine = state_m
+
+
+func get_state_machine():
+	return state_machine
+
+func handle_input(event:InputEvent):
+	pass
+	

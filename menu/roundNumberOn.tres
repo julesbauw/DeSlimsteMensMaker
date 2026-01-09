@@ -1,0 +1,8 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://b32dm72rc51au"]
+
+[ext_resource type="FontFile" uid="uid://dmj6pqohsc1ho" path="res://resources/fonts/dsmtw.ttf" id="1_7nird"]
+
+[resource]
+font = ExtResource("1_7nird")
+font_size = 75
+font_color = Color(0.972549, 0.46666667, 0.25490198, 1)

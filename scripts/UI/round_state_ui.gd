@@ -18,4 +18,9 @@ func next_question():
     pass
 
 
+func set_state_machine(state_m:RoundStateMachine):
+    state_machine = state_m
 
+
+func get_state_machine() -> RoundStateMachine:
+    return state_machine

@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cmjsd52fmod3i"]
+[gd_scene load_steps=9 format=3 uid="uid://cmjsd52fmod3i"]
 
 [ext_resource type="Texture2D" uid="uid://cj7kpyv0mddo" path="res://resources/images/bg_img_large_2x.png" id="1_lbhrr"]
 [ext_resource type="AudioStream" uid="uid://c4bpmopw3l088" path="res://resources/audio/klok1.mp3" id="1_lnu2h"]
@@ -7,6 +7,7 @@
 [ext_resource type="AudioStream" uid="uid://brkb8e1ao6es8" path="res://resources/audio/fout.mp3" id="3_iywne"]
 [ext_resource type="PackedScene" uid="uid://d0jlxoogl1pcg" path="res://scenes/3_6_9.tscn" id="3_p57ef"]
 [ext_resource type="Theme" uid="uid://eide34iowbue" path="res://menu/button.tres" id="4_u5sy4"]
+[ext_resource type="AudioStream" uid="uid://bigb3kqdxtall" path="res://resources/audio/klok_stop.mp3" id="8_gee14"]
 
 [node name="game" type="Node2D"]
 
@@ -22,7 +23,7 @@ offset_right = 40.0
 offset_bottom = 40.0
 texture = ExtResource("1_lbhrr")
 
-[node name="Control" type="Control" parent="UI" node_paths=PackedStringArray("correct_audio", "wrong_audio", "stop_clock_audio", "clock_audio", "player_list", "initial_state")]
+[node name="Control" type="Control" parent="UI" node_paths=PackedStringArray("correct_audio", "wrong_audio", "stop_clock_audio", "clock_audio", "player_Container", "initial_state")]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -31,7 +32,7 @@ correct_audio = NodePath("../../juist")
 wrong_audio = NodePath("../../fout")
 stop_clock_audio = NodePath("../../klok_stop")
 clock_audio = NodePath("../../klok")
-player_list = NodePath("../HBoxContainer/player_list")
+player_Container = NodePath("../HBoxContainer/player_list")
 initial_state = NodePath("3-6-9")
 
 [node name="3-6-9" parent="UI/Control" instance=ExtResource("3_p57ef")]
@@ -56,12 +57,14 @@ layout_mode = 2
 [node name="next_question" type="Button" parent="UI/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 8
+focus_mode = 0
 theme = ExtResource("4_u5sy4")
 text = "next question"
 
 [node name="next_round" type="Button" parent="UI/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 8
+focus_mode = 0
 theme = ExtResource("4_u5sy4")
 text = "Skip round"
 
@@ -72,11 +75,15 @@ stream = ExtResource("1_lnu2h")
 
 [node name="juist" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("2_lbhrr")
+volume_db = 24.0
 
 [node name="fout" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_iywne")
+volume_db = 24.0
 
 [node name="klok_stop" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_gee14")
+volume_db = 24.0
 
 [connection signal="pressed" from="UI/HBoxContainer/VBoxContainer/next_question" to="UI/Control" method="_on_skip_question"]
 [connection signal="pressed" from="UI/HBoxContainer/VBoxContainer/next_round" to="UI/Control" method="_on_skip_round"]
